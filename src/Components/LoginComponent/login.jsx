@@ -6,7 +6,8 @@ class Login extends Component {
         super(props);
         this.state = {
             "EmailId":"",
-            "Password":""
+            "Password":"",
+            "RememberMe":false
         }
     }
     
@@ -19,8 +20,13 @@ class Login extends Component {
         console.log(this.state);
     }
     
-    RememberMeChangeHandler=(elementRef)=>{
-        
+    RememberMeChangeHandler=(element)=>{
+        var checked = !this.state.RememberMe;
+        console.log(checked);
+        this.setState({RememberMe:checked});
+        if(checked){
+            console.log(element.target.value);
+        }
     }
 
     componentWillMount(){
@@ -46,6 +52,11 @@ class Login extends Component {
         //after state will changed
     }
     render() {
+        const mycss = {
+            color:"red",
+            margin:"10px",
+            padding:"10px"
+        };
         return (
             <div className="container">
                 <div className="col-md-8">
@@ -57,7 +68,7 @@ class Login extends Component {
                          className="form-control" placeholder="Enter email" id="email" />
                     </div>
                     <div className="form-group">
-                        <label for="pwd">Password:</label>
+                        <label for="pwd" style={mycss}>Password:</label>
                         <input type="password" 
                         name="Password"
                         onChange={(element)=>this.ChangeHandler(element)}
@@ -67,11 +78,11 @@ class Login extends Component {
                         <label className="form-check-label">
                             <input className="form-check-input"
                             onChange={(element)=>this.RememberMeChangeHandler(element)}
-                             type="checkbox" /> Remember me
+                             type="checkbox" value="RememberMe" /> Remember me
                      </label>
                     </div>
                     <button type="button" className="btn btn-primary">Submit</button>
-                    {this.state.EmailId}/{this.state.Password}
+                    {this.state.EmailId}/{this.state.Password}/{this.state.RememberMe?"RememberMe":"Not Remember Me"}
                 </div>
             </div>
         );
