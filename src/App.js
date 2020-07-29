@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
-
+import StudentList from './Components/Students/studentlist';
+import Login from './Components/LoginComponent/login';
 function App() {
   return (
     <div className="App">
-      <h1>App1 Test</h1>
+
+      <Login/>
+      {/* <StudentList/>   */}
+
     </div>
   );
 }
